@@ -1,20 +1,32 @@
 package com.source.service;
 
 import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.source.dao.Dao;
-import com.source.entity.Entity;
+import com.source.dao.Customer;
+import com.source.dao.CustomerRepository;
 
 @Service
 public class AppService {
-	
+
 	@Autowired
-	private Dao dao;
-	
-	public Collection<Entity> getAllEntities() {
-		return dao.getEntities();
+	private CustomerRepository customerDao;
+
+	public Collection<Customer> getAllEntities() {
+		return customerDao.findAll();
 	}
 
+	public Collection<Customer> findByFirstName(String firstName) {
+		return customerDao.findByFirstName(firstName);
+	}
+
+	public Collection<Customer> findByLastName(String lastName) {
+		return customerDao.findByLastName(lastName);
+	}
+	
+	public Collection<Customer> findByFirstNameAndLastName(String firstName, String lastName) {
+		return customerDao.findByFirstNameAndLastName(firstName, lastName);
+	}
 }
