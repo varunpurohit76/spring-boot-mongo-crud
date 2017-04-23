@@ -1,30 +1,22 @@
 package com.source.dao;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Data;
+
+@Data
 @Document(collection="customer")
-public class Customer {
+public class Customer implements Serializable{
 
     @Id
     public String id;
-
+    
     public String firstName;
     public String lastName;
-
-    public Customer() {}
-
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%s, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
-    }
 
 }
 
